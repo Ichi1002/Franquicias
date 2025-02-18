@@ -1,5 +1,12 @@
 package com.franquicia.infrastructure.reposiroty;
 
-public interface FranchiseRepository {
+import com.franquicia.infrastructure.entity.FranchiseEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.UUID;
+
+@Repository
+public interface FranchiseRepository extends JpaRepository<FranchiseEntity, UUID> {
 
 }
