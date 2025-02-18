@@ -1,15 +1,15 @@
 package com.franquicia.infrastructure.entity;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.UUID;
 
-@Getter
 @Setter
+@Getter
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class ProductEntity {
     @Id

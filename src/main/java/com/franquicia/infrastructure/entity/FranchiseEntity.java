@@ -2,15 +2,16 @@ package com.franquicia.infrastructure.entity;
 
 import com.franquicia.domain.models.Franchise;
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 import java.util.UUID;
 
 @Setter
+@Getter
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class FranchiseEntity {
     @Id
@@ -22,13 +23,13 @@ public class FranchiseEntity {
 
     public Franchise toDomain(){
     return Franchise.builder()
-            .name(this.name)
+            .franchiseName(this.name)
             .build();
     }
 
     public static FranchiseEntity fromDomain(Franchise franchise){
         return FranchiseEntity.builder()
-                .name(franchise.getName())
+                .name(franchise.getFranchiseName())
                 .build();
     }
 }

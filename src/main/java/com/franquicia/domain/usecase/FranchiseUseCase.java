@@ -9,7 +9,7 @@ import java.util.Map;
 
 public interface FranchiseUseCase {
     Franchise createFranchise(Franchise franchise);
-    Franchise addSubsuduaryToFranchise(String franchiseName, Subsidiary subsidiary);
+    Franchise addSubsuduaryToFranchise(String franchiseName, String subsidiaryName);
     Subsidiary addProductToSubsidiary(String subsidiaryName, Product product);
     Subsidiary deleteProductOfSubsidiary(String subsidiaryName, String productName);
     Subsidiary modifyProductStockOfSubsidiary(String subsidiaryName, Product product);

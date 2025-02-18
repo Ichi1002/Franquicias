@@ -10,6 +10,6 @@ import java.util.List;
 @Setter
 @Builder
 public class Subsidiary {
-    private String name;
+    private String subsidiatyName;
     List<Product> productsList;
 }

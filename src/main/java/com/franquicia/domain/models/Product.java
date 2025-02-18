@@ -8,6 +8,6 @@ import lombok.Setter;
 @Setter
 @Builder
 public class Product {
-    private String name;
+    private String productName;
     private Integer Stock;
 }

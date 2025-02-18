@@ -8,6 +8,6 @@ import java.util.List;
 @Setter
 @Builder
 public class Franchise {
-    private String name;
+    private String franchiseName;
     private List<Subsidiary> subsidiaryList;
 }
