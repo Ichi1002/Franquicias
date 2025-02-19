@@ -10,7 +10,7 @@ import java.util.Map;
 public interface FranchiseUseCase {
     Franchise createFranchise(Franchise franchise);
     Franchise addSubsuduaryToFranchise(String franchiseName, String subsidiaryName);
-    Subsidiary addProductToSubsidiary(String subsidiaryName, Product product);
+    List<Franchise> addProductToSubsidiary(String franchiseName,String subsidiaryName, List<Product> product);
     Subsidiary deleteProductOfSubsidiary(String subsidiaryName, String productName);
     Subsidiary modifyProductStockOfSubsidiary(String subsidiaryName, Product product);
     List<Map<String,Product>> getBiggerStickProductInSubsidiaryByFranchise(String franchiseName);

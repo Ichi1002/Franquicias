@@ -36,6 +36,9 @@ public class SubsidiaryEntity {
     public Subsidiary toDomain(){
         return Subsidiary.builder()
                 .subsidiatyName(this.name)
+                .productsList(this.productsList.stream()
+                        .map(ProductEntity::toDomain)
+                        .collect(Collectors.toList()))
                 .build();
     }
 

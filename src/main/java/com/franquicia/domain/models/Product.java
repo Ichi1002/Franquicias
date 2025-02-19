@@ -9,5 +9,5 @@ import lombok.Setter;
 @Builder
 public class Product {
     private String productName;
-    private Integer Stock;
+    private Integer stock;
 }

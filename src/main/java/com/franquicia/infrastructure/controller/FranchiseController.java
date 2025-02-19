@@ -2,6 +2,7 @@ package com.franquicia.infrastructure.controller;
 
 import com.franquicia.domain.models.Franchise;
 import com.franquicia.domain.usecase.FranchiseUseCase;
+import com.franquicia.infrastructure.DTO.ProductSubsidiaryDto;
 import com.franquicia.infrastructure.DTO.ResponseDto;
 import com.franquicia.infrastructure.DTO.SubsidiaryFranchiseDto;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +29,16 @@ public class FranchiseController {
     public ResponseDto addSubsidiarytoFranchise(@RequestBody SubsidiaryFranchiseDto dto){
         return ResponseDto.builder()
                 .data(franchiseUseCase.addSubsuduaryToFranchise(dto.getFranchiseName(),dto.getSubsidiaryName()))
+                .message("OK")
+                .status(200)
+                .build();
+    }
+
+    @PostMapping("/addProduct")
+    public ResponseDto addProductToSubsidiary(@RequestBody ProductSubsidiaryDto dto){
+        return ResponseDto.builder()
+                .data(franchiseUseCase.addProductToSubsidiary(
+                        dto.getFranchiseName(),dto.getSubsidiaryName(),dto.getProducts()))
                 .message("OK")
                 .status(200)
                 .build();
