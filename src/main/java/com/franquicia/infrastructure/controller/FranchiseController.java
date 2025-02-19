@@ -44,9 +44,19 @@ public class FranchiseController {
 
     @DeleteMapping("/deleteProduct")
     public ResponseDto deleteProductFromSubsidiary(@RequestBody SubsidiaryProductDto dto){
-        franchiseUseCase.deleteProductOfSubsidiary(dto.getSubsidiaryName(),dto.getProductName());
+        franchiseUseCase.deleteProductOfSubsidiary(dto.getSubsidiaryName(),dto.getProduct().getProductName());
         return ResponseDto.builder()
                 .data("Producto eliminado correctamente")
+                .message("OK")
+                .status(200)
+                .build();
+    }
+
+    @PatchMapping("/updateStock")
+    public ResponseDto updateStockProductFromSubsidiary(@RequestBody SubsidiaryProductDto dto){
+        franchiseUseCase.modifyProductStockOfSubsidiary(dto.getFranchiseName(),dto.getSubsidiaryName(),dto.getProduct());
+        return ResponseDto.builder()
+                .data("Producto actualizado correctamente")
                 .message("OK")
                 .status(200)
                 .build();

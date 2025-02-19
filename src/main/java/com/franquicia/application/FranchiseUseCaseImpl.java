@@ -2,7 +2,6 @@ package com.franquicia.application;
 
 import com.franquicia.domain.models.Franchise;
 import com.franquicia.domain.models.Product;
-import com.franquicia.domain.models.Subsidiary;
 import com.franquicia.domain.usecase.FranchiseUseCase;
 import com.franquicia.infrastructure.entity.FranchiseEntity;
 import com.franquicia.infrastructure.entity.ProductEntity;
@@ -76,8 +75,19 @@ public class FranchiseUseCaseImpl implements FranchiseUseCase {
     }
 
     @Override
-    public Subsidiary modifyProductStockOfSubsidiary(String subsidiaryName, Product product) {
-        return null;
+    public Franchise modifyProductStockOfSubsidiary(String franchiseName, String subsidiaryName, Product product) {
+        var franchise  = franchiseRepository.findByNameIgnoreCase(franchiseName);
+        if (franchise.isEmpty())
+            throw new RuntimeException("Franquicia no existe");
+        var subsidiary = subsidiaryRepository.findByNameIgnoreCase(subsidiaryName);
+        if (subsidiary.isEmpty())
+            throw new RuntimeException("Sucursal no existe");
+        var productFound = productRepository.findByNameIgnoreCase(product.getProductName());
+        if(productFound.isEmpty())
+            throw new RuntimeException("Prodcuto no existe");
+        productFound.get().setStock(product.getStock());
+        return productRepository.save(productFound.get()).toFranchiseDomain();
+
     }
 
     @Override
