@@ -62,4 +62,14 @@ public class FranchiseController {
                 .build();
     }
 
+    @GetMapping("/getMaxtock/{franchiseName}")
+    public ResponseDto getMaxStockByFtranchiseAndSubsidiary(@PathVariable String franchiseName){
+
+        return ResponseDto.builder()
+                .data(franchiseUseCase.getBiggerStickProductInSubsidiaryByFranchise(franchiseName))
+                .message("OK")
+                .status(200)
+                .build();
+    }
+
 }

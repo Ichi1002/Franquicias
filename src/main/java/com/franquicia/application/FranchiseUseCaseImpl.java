@@ -12,8 +12,7 @@ import com.franquicia.infrastructure.reposiroty.SubsidiaryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -91,7 +90,26 @@ public class FranchiseUseCaseImpl implements FranchiseUseCase {
     }
 
     @Override
-    public List<Map<String, Product>> getBiggerStickProductInSubsidiaryByFranchise(String franchiseName) {
-        return List.of();
+    public Map<String, Product> getBiggerStickProductInSubsidiaryByFranchise(String franchiseName) {
+        var franchise = franchiseRepository.findByNameIgnoreCase(franchiseName);
+        Map<String,Product> biggerStock = new HashMap<>();
+        if(franchise.isEmpty())
+            throw new RuntimeException("Framquisia no existe");
+
+
+        franchise.get().getSubsidiaryList()
+                .stream()
+                .forEach( subsidiary -> {
+                            if(!subsidiary.getProductsList().isEmpty()) {
+                                var maxStock = subsidiary.getProductsList().stream()
+                                        .max(Comparator.comparing(v -> v.getStock()));
+                                //if(!subsidiary.getName().isEmpty())
+                                biggerStock.put(subsidiary.getName(), maxStock.get().toDomain());
+
+                            }
+    }
+                );
+
+        return biggerStock;
     }
 }

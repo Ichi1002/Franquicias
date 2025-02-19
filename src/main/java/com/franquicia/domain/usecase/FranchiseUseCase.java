@@ -13,6 +13,6 @@ public interface FranchiseUseCase {
     List<Franchise> addProductToSubsidiary(String franchiseName,String subsidiaryName, List<Product> product);
     void deleteProductOfSubsidiary(String subsidiaryName, String productName);
     Franchise modifyProductStockOfSubsidiary(String franchiseName, String subsidiaryName, Product product);
-    List<Map<String,Product>> getBiggerStickProductInSubsidiaryByFranchise(String franchiseName);
+    Map<String,Product> getBiggerStickProductInSubsidiaryByFranchise(String franchiseName);
 
 }
