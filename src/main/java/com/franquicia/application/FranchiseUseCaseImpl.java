@@ -63,8 +63,16 @@ public class FranchiseUseCaseImpl implements FranchiseUseCase {
     }
 
     @Override
-    public Subsidiary deleteProductOfSubsidiary(String subsidiaryName, String productName) {
-        return null;
+    public void deleteProductOfSubsidiary(String subsidiaryName, String productName) {
+        var subsidiary = subsidiaryRepository.findByNameIgnoreCase(subsidiaryName);
+        if (subsidiary.isEmpty())
+            throw new RuntimeException("Sucursal no existe");
+        var product = productRepository.findByNameIgnoreCase(productName);
+        if(product.isEmpty())
+            throw new RuntimeException("Prodcuto no existe");
+
+        productRepository.deleteById(product.get().getUuid());
+
     }
 
     @Override

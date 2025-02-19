@@ -5,11 +5,9 @@ import com.franquicia.domain.usecase.FranchiseUseCase;
 import com.franquicia.infrastructure.DTO.ProductSubsidiaryDto;
 import com.franquicia.infrastructure.DTO.ResponseDto;
 import com.franquicia.infrastructure.DTO.SubsidiaryFranchiseDto;
+import com.franquicia.infrastructure.DTO.SubsidiaryProductDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
@@ -39,6 +37,16 @@ public class FranchiseController {
         return ResponseDto.builder()
                 .data(franchiseUseCase.addProductToSubsidiary(
                         dto.getFranchiseName(),dto.getSubsidiaryName(),dto.getProducts()))
+                .message("OK")
+                .status(200)
+                .build();
+    }
+
+    @DeleteMapping("/deleteProduct")
+    public ResponseDto deleteProductFromSubsidiary(@RequestBody SubsidiaryProductDto dto){
+        franchiseUseCase.deleteProductOfSubsidiary(dto.getSubsidiaryName(),dto.getProductName());
+        return ResponseDto.builder()
+                .data("Producto eliminado correctamente")
                 .message("OK")
                 .status(200)
                 .build();
