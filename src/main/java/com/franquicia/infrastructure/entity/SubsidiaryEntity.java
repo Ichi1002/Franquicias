@@ -1,10 +1,12 @@
 package com.franquicia.infrastructure.entity;
 
 import com.franquicia.domain.models.Franchise;
+import com.franquicia.domain.models.Product;
 import com.franquicia.domain.models.Subsidiary;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -34,11 +36,15 @@ public class SubsidiaryEntity {
     }
 
     public Subsidiary toDomain(){
+        List<Product> productList = new ArrayList<>();
+        if(this.productsList != null)
+            if(!this.productsList.isEmpty())
+                productList = this.productsList.stream()
+                    .map(ProductEntity::toDomain)
+                    .collect(Collectors.toList());
         return Subsidiary.builder()
                 .subsidiatyName(this.name)
-                .productsList(this.productsList.stream()
-                        .map(ProductEntity::toDomain)
-                        .collect(Collectors.toList()))
+                .productsList(productList)
                 .build();
     }
 
