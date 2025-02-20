@@ -112,4 +112,14 @@ public class FranchiseUseCaseImpl implements FranchiseUseCase {
 
         return biggerStock;
     }
+
+    @Override
+    public Franchise updateFranchiseName(String franchiseName,String newFranchiseName) {
+        var franchise = franchiseRepository.findByNameIgnoreCase(franchiseName);
+        if(franchise.isEmpty())
+            throw new RuntimeException("Franquisia no existe");
+        franchise.get().setName(newFranchiseName);
+
+        return franchiseRepository.save(franchise.get()).toDomain();
+    }
 }

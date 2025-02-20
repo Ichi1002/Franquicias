@@ -14,5 +14,6 @@ public interface FranchiseUseCase {
     void deleteProductOfSubsidiary(String subsidiaryName, String productName);
     Franchise modifyProductStockOfSubsidiary(String franchiseName, String subsidiaryName, Product product);
     Map<String,Product> getBiggerStickProductInSubsidiaryByFranchise(String franchiseName);
+    Franchise updateFranchiseName(String franchiseName,String newFranchiseName);
 
 }

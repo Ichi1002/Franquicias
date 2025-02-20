@@ -72,4 +72,12 @@ public class FranchiseController {
                 .build();
     }
 
+    @PatchMapping("/updateFranchiseName/{franchiseName}/{newFranchiseName}")
+    public ResponseDto updateStockProductFromSubsidiary(@PathVariable String franchiseName,@PathVariable String newFranchiseName){
+        return ResponseDto.builder()
+                .data(franchiseUseCase.updateFranchiseName(franchiseName,newFranchiseName))
+                .message("OK")
+                .status(200)
+                .build();
+    }
 }
